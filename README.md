@@ -1,2 +1,1 @@
-# Promise.js
-Promise Questions by .then &amp; .catch &amp;&amp; Asynch&amp;Await
+Questions related to Promise(.then & .catch Also asynch & await)
