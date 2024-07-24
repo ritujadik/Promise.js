@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question2</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function promise(data){
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log(data,`recieved: ${data} result`)
+                resolve("resolved successfull")
+            },3000)                
+            });
+        }
+
+    async function secondfunc(){
+        await promise("first promise");
+        await promise("second promise");
+        await promise("third promise");
+        await promise("fourth promise");
+
+    }    
+    secondfunc();
+</script>
