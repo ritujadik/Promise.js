@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise in Zomato task2</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function orderconfirmation(data){
+        return new Promise((resolve, reject) => {setTimeout(() => {
+            const menu = ["Rajma","Chole","Dal-Makhani"]
+            if (menu.includes(data)){
+                console.log(`Your Order ${data} accepted`);
+            }else {console.log('rejected')}
+            resolve("resolved successfull") 
+        }, 2000);         
+        });
+    }
+    async function neworder(){
+        await orderconfirmation("Rajma");
+        await orderconfirmation("rice");
+        await orderconfirmation("Chole");
+    }
+    neworder();
+</script>
