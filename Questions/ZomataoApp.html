@@ -10,18 +10,27 @@
 </body>
 </html>
 <script>
-    function orderaccept(data){
+    function orderaccept(data,OrderId){
         return new Promise((resolve, reject) => {
             const restaurant_timer = setTimeout(() => {
                 console.log(`checking ${data} if restaurant accepted order or not`)
-                resolve("resolved successfull")             
+                if (OrderId<5){
+                resolve({order_Id:OrderId,message:"Order Accepted"}) 
+                }else{
+                    reject({order_Id:OrderId ,message:"Order Not Accepted"})
+                }            
             }, 2000);           
             });
     }
     async function new_order(){
-        await orderaccept("order1");
-        await orderaccept("order2");
-        await orderaccept("order3");
+       const first = await orderaccept("order1",1);
+       console.log(first);
+       const second = await orderaccept("order2",2);
+       console.log(second);
+       const third = await orderaccept("order3",3);
+       console.log(third);
+       const fifth = await orderaccept("order5",5);
+       console.log(fifth);
     }
 
     new_order();

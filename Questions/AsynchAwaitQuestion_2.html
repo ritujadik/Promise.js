@@ -10,20 +10,24 @@
 </body>
 </html>
 <script>
-    function promise(data){
+    function promise(data,numbers){
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                console.log(data,`recieved: ${data} result`)
-                resolve("resolved successfull")
+                console.log("checking the promise state")
+                resolve({number:numbers,message:`${data} executed successfull`})
             },3000)                
             });
         }
 
     async function secondfunc(){
-        await promise("first promise");
-        await promise("second promise");
-        await promise("third promise");
-        await promise("fourth promise");
+        const first = await promise("first promise",1);
+        console.log(first);
+        const second = await promise("second promise",2);
+        console.log(second);
+        const third = await promise("third promise",3);
+        console.log(third);
+        const fourth = await promise("fourth promise",4);
+        console.log(fourth);
 
     }    
     secondfunc();

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise Any</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  const first = () =>
+    new Promise((reply, reject) => {
+      setTimeout(() => {
+        reply({ msg: "1. done" });
+      }, 2000);
+    });
+
+  const second = () =>
+    new Promise((reply, reject) =>
+      setTimeout(() => reject({ msg: "2 Done" }), 2000)
+    );
+
+  const third = () =>
+    new Promise((reply, reject) =>
+      setTimeout(() => reply({ msg: "3 Fail" }), 2000)
+    );
+
+  // Call promises together
+
+  const runP = async () => {
+    try {
+      const results = await Promise.raise([third(), first(), second()]);
+      console.log("Results: ", results);
+    } catch (err) {
+      console.log("Err: ", err);
+    }
+  };
+  runP();
+</script>

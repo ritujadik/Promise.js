@@ -13,19 +13,24 @@
     function promise(data){
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                console.log(data,`received: ${data} result`,)
-                resolve("resolved done successfully")
+                resolve(`${data} executed successfully`)
             }, 2000);
         });
     }
 
     async function newme(){
-        await promise("first promise");
-        await promise("second promise");
-        await promise("third promise");
-        await promise("fourth promise");
-        await promise("fifth promise");
-        await promise("sixth promise");
+        const first = await promise("first promise");
+        console.log(first);
+        const second = await promise("second promise");
+        console.log(second);
+        const third = await promise("third promise");
+        console.log(third);
+        const fourth = await promise("fourth promise");
+        console.log(fourth);
+        const fifth = await promise("fifth promise");
+        console.log(fifth);
+        const sixth = await promise("sixth promise");
+        console.log("final result",sixth);
     }
 
     newme();
