@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromiseTypes</title>
+</head>
+<body>
+    Promise.all
+    Promise.any
+    Promise.race
+    Promise.allSettled
+    
+</body>
+</html>
+<script>
+    const promise = (name,Age)=>{
+         return new Promise((resolve, reject) => {setTimeout(() => {
+            if (Age < 30){
+                resolve(`This is my name ${name} & my Age is ${Age}`)}
+            else {
+                reject('I am not able to recall my identity') }
+         }, 3000);          
+        });
+    }
+    async function myidentity(){
+        //Promise.any which will give you first exectued one
+        const person = await Promise.any([promise("raju",24),promise("rohit",31),promise("rahul",22)])
+        console.log(person);
+        // Promise.allsettled will give you all the promise response whether resolved or reject.
+        const person1 = await Promise.allSettled([promise("raju",24),promise("rohit",31),promise("rahul",22)])
+        console.log(person1);
+        //Promise.race will give the first output which get executed first no matter resolved or rejected.
+        const person2 = await Promise.race([promise("raju",24),promise("rohit",31),promise("rahul",22)])
+        console.log(person2);
+        // Promise.all - which will give you first reject if there is no matter how many resolve there and 
+        //if there is no reject than will give all resolved. 
+        const person3 = await Promise.all([promise("raju",24),promise("rohit",31),promise("rahul",22)])
+        console.log(person3);
+
+        
+    }
+    myidentity();
+</script>

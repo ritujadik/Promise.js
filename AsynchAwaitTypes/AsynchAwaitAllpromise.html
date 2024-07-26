@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise All</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  const first = () =>
+    new Promise((reply, reject) => {
+      setTimeout(() => {
+        reply({ msg: "done" });
+      }, 2000);
+    });
+
+  const second = () =>
+    new Promise((reply, reject) =>
+      setTimeout(() => reply({ msg: "2 Done" }), 3000)
+    );
+
+  const third = () =>
+    new Promise((reply, reject) =>
+      setTimeout(() => reject({ msg: "3 Fail" }), 3000)
+    );
+
+  // Call promises together
+
+  const runP = async () => {
+    try {
+      const results = await Promise.all([first(), second()]);
+      console.log("Results: ", results);
+    } catch (err) {
+      console.log("Err: ", err);
+    }
+  };
+  runP();
+
+  const runP2 = async () => {
+    try {
+      const results = await Promise.all([first(), second(), third()]);
+      console.log("Results: ", results);
+    } catch (err) {
+      console.log("Err: ", err);
+    }
+  };
+  runP2();
+</script>
